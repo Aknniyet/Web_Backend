@@ -1,23 +1,18 @@
-// Import required modules
-const express = require('express'); // Express framework for creating the server
-const bodyParser = require('body-parser'); // Middleware for parsing form data
-
-// Initialize the app
+const express = require('express'); 
+const bodyParser = require('body-parser'); 
 const app = express();
 
 // Middleware setup
-app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded form data
-app.use(express.static('public')); // Serve static files (like CSS) from the 'public' folder
+app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(express.static('public')); 
 
 // Route for the home page
 app.get('/', (req, res) => {
-    // Serve the index.html file when the user accesses the root URL
     res.sendFile(__dirname + '/views/index.html');
 });
 
 // Route for handling the form submission
 app.post('/calculate', (req, res) => {
-    // Retrieve the 'weight', 'height', and 'age' field values from the submitted form
     const weight = parseFloat(req.body.weight);
     const height = parseFloat(req.body.height);
     const age = parseInt(req.body.age);
@@ -73,9 +68,7 @@ app.post('/calculate', (req, res) => {
     `);
 });
 
-// Start the server
-const PORT = 3000; // Define the port number
+const PORT = 3000; 
 app.listen(PORT, () => {
-    // Log a message when the server starts
     console.log(`Server is running on http://localhost:${PORT}`);
 });
